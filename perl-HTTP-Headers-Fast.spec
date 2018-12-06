@@ -4,7 +4,7 @@
 #
 Name     : perl-HTTP-Headers-Fast
 Version  : 0.21
-Release  : 7
+Release  : 8
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.21.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.21.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-headers-fast-perl/libhttp-headers-fast-perl_0.21-1.debian.tar.xz
@@ -47,7 +47,7 @@ license components for the perl-HTTP-Headers-Fast package.
 cd ..
 %setup -q -T -D -n HTTP-Headers-Fast-0.21 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Headers-Fast-0.21/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Headers-Fast-0.21/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
