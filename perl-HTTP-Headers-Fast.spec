@@ -4,14 +4,15 @@
 #
 Name     : perl-HTTP-Headers-Fast
 Version  : 0.22
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-headers-fast-perl/libhttp-headers-fast-perl_0.21-1.debian.tar.xz
-Summary  : A faster implementation of HTTP::Headers
+Summary  : 'faster implementation of HTTP::Headers'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-HTTP-Headers-Fast-license = %{version}-%{release}
+Requires: perl-HTTP-Headers-Fast-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(ExtUtils::Config)
 BuildRequires : perl(ExtUtils::Helpers)
@@ -43,18 +44,28 @@ Group: Default
 license components for the perl-HTTP-Headers-Fast package.
 
 
+%package perl
+Summary: perl components for the perl-HTTP-Headers-Fast package.
+Group: Default
+Requires: perl-HTTP-Headers-Fast = %{version}-%{release}
+
+%description perl
+perl components for the perl-HTTP-Headers-Fast package.
+
+
 %prep
 %setup -q -n HTTP-Headers-Fast-0.22
-cd ..
-%setup -q -T -D -n HTTP-Headers-Fast-0.22 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libhttp-headers-fast-perl_0.21-1.debian.tar.xz
+cd %{_builddir}/HTTP-Headers-Fast-0.22
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Headers-Fast-0.22/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/HTTP-Headers-Fast-0.22/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -66,8 +77,8 @@ fi
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/deblicense_copyright
+cp %{_builddir}/HTTP-Headers-Fast-0.22/LICENSE %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/84f960e297673c6ceec765aa4f79e0eb3763b4a0
+cp %{_builddir}/HTTP-Headers-Fast-0.22/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/96423635b5647cdf510db0ff016e27244757c23f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -80,7 +91,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/HTTP/Headers/Fast.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -88,5 +98,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-HTTP-Headers-Fast/LICENSE
-/usr/share/package-licenses/perl-HTTP-Headers-Fast/deblicense_copyright
+/usr/share/package-licenses/perl-HTTP-Headers-Fast/84f960e297673c6ceec765aa4f79e0eb3763b4a0
+/usr/share/package-licenses/perl-HTTP-Headers-Fast/96423635b5647cdf510db0ff016e27244757c23f
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/HTTP/Headers/Fast.pm
