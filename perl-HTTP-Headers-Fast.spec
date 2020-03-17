@@ -4,7 +4,7 @@
 #
 Name     : perl-HTTP-Headers-Fast
 Version  : 0.22
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-headers-fast-perl/libhttp-headers-fast-perl_0.21-1.debian.tar.xz
@@ -78,7 +78,7 @@ fi
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast
 cp %{_builddir}/HTTP-Headers-Fast-0.22/LICENSE %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/84f960e297673c6ceec765aa4f79e0eb3763b4a0
-cp %{_builddir}/HTTP-Headers-Fast-0.22/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/96423635b5647cdf510db0ff016e27244757c23f
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-HTTP-Headers-Fast/96423635b5647cdf510db0ff016e27244757c23f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -103,4 +103,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/HTTP/Headers/Fast.pm
+/usr/lib/perl5/vendor_perl/5.30.2/HTTP/Headers/Fast.pm
