@@ -4,7 +4,7 @@
 #
 Name     : perl-HTTP-Headers-Fast
 Version  : 0.22
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/HTTP-Headers-Fast-0.22.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-headers-fast-perl/libhttp-headers-fast-perl_0.21-1.debian.tar.xz
@@ -103,4 +103,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/HTTP/Headers/Fast.pm
+/usr/lib/perl5/*
